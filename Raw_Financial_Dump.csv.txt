@@ -1,0 +1,6 @@
+CustomerID,Location,ProductType,SalesRevenue,GrossProfit,NetProfit
+1001,North America,Bracelet,737.00,368.50,147.40
+1002,Middle East,Ring,334.00,167.00,66.80
+,Asia,Ring,515.00,257.50,103.00
+1004,North America,Bracelet,1037.00,518.50,-100.00
+1005,Europe,Ring,598.00,299.00,

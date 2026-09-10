@@ -1,0 +1,24 @@
+Sub Automate_MIS_Preprocessing()
+    ' Formats the raw financial dump and visually flags critical missing data
+    Dim ws As Worksheet
+    Set ws = ActiveSheet
+    
+    Dim lastRow As Long
+    lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row
+    
+    ' 1. Apply standardized financial formatting to SalesRevenue and NetProfit 
+    ws.Range("Y2:Y" & lastRow).NumberFormat = "$#,##0.00"
+    ws.Range("AH2:AH" & lastRow).NumberFormat = "$#,##0.00"
+    
+    ' 2. Highlight missing Customer IDs in Red (Error Checking Mechanism)
+    Dim cell As Range
+    For Each cell In ws.Range("A2:A" & lastRow) 
+        If IsEmpty(cell) Then
+            cell.Interior.Color = RGB(255, 0, 0) 
+        End If
+    Next cell
+    
+    ' 3. Auto-fit and alert the user
+    ws.Columns.AutoFit
+    MsgBox "Pre-processing complete. Data is ready for SQL staging.", vbInformation, "MIS Automation"
+End Sub
